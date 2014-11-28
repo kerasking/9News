@@ -1,12 +1,34 @@
+TARGET = 9News
+
 # Add more folders to ship with the application, here
-folder_01.source = qml/9News
-folder_01.target = qml
-DEPLOYMENTFOLDERS = folder_01
 
 # Additional import path used to resolve QML modules in Creator's code model
 QML_IMPORT_PATH =
 
-symbian:TARGET.UID3 = 0xE2E87DAE
+folder_02.source = qml/utility
+folder_02.target = qml
+DEPLOYMENTFOLDERS += folder_02
+
+symbian{
+    TARGET.UID3 = 0xE2E87DAE
+    TARGET.CAPABILITY += NetworkServices
+
+    folder_01.source = qml/symbian
+    folder_01.target = qml
+    DEPLOYMENTFOLDERS += folder_01
+}
+
+contains(MEEGO_EDITION, harmattan){
+    folder_01.source = qml/meego
+    folder_01.target = qml
+    DEPLOYMENTFOLDERS += folder_01
+}
+
+simulator{
+    folder_01.source = qml
+    folder_01.target = ./
+    DEPLOYMENTFOLDERS += folder_01
+}
 
 # Smart Installer package's UID
 # This UID is from the protected range and therefore the package will
@@ -16,7 +38,6 @@ symbian:TARGET.UID3 = 0xE2E87DAE
 #symbian:DEPLOYMENT.installer_header = 0x2002CCCF
 
 # Allow network access on Symbian
-symbian:TARGET.CAPABILITY += NetworkServices
 
 # If your application uses the Qt Mobility libraries, uncomment the following
 # lines and add the respective components to the MOBILITY variable.
@@ -46,5 +67,3 @@ OTHER_FILES += \
     qtc_packaging/debian_harmattan/control \
     qtc_packaging/debian_harmattan/compat \
     qtc_packaging/debian_harmattan/changelog
-
-HEADERS +=

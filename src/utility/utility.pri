@@ -1,4 +1,4 @@
-QT += network script concurrent
+QT += network script
 INCLUDEPATH += $$PWD
 
 HEADERS += \
