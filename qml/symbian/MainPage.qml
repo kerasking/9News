@@ -1,6 +1,7 @@
 // import QtQuick 1.0 // to target S60 5th Edition or Maemo 5
 import QtQuick 1.1
 import com.nokia.symbian 1.1
+import com.stars.widgets 1.0
 
 MyPage{
     property bool isQuit: false
@@ -9,6 +10,7 @@ MyPage{
     tools: ToolBarLayout{
         ToolButton{
             iconSource: "toolbar-back"
+            platformInverted: main.platformInverted
             onClicked: {
                 if(isQuit){
                     Qt.quit()
@@ -20,6 +22,12 @@ MyPage{
         }
         ToolButton{
             iconSource: "toolbar-menu"
+            platformInverted: main.platformInverted
+            onClicked: {
+                fileDialog.inverseTheme = true
+                fileDialog.exec("./", "", FilesDialog.AllEntries, FilesDialog.Name)
+                console.debug("selected files:"+fileDialog.allSelection())
+            }
         }
     }
 

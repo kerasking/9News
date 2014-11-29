@@ -1,5 +1,8 @@
 TARGET = 9News
 
+INCLUDEPATH += \
+    src/utility \
+    src/selectfilesdialog
 # Add more folders to ship with the application, here
 
 # Additional import path used to resolve QML modules in Creator's code model
@@ -8,6 +11,9 @@ QML_IMPORT_PATH =
 folder_02.source = qml/utility
 folder_02.target = qml
 DEPLOYMENTFOLDERS += folder_02
+folder_temp.source = src/selectfilesdialog/*.qml
+folder_temp.target = selectfilesdialog
+#DEPLOYMENTFOLDERS += folder_temp
 
 symbian{
     TARGET.UID3 = 0xE2E87DAE
@@ -58,6 +64,7 @@ SOURCES += \
 include(qmlapplicationviewer/qmlapplicationviewer.pri)
 qtcAddDeployment()
 include(src/utility/utility.pri)
+include(src/selectfilesdialog/selectfilesdialog.pri)
 
 OTHER_FILES += \
     qtc_packaging/debian_harmattan/rules \

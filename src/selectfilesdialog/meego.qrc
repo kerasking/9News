@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/selectfilesdialog">
+        <file>meego.qml</file>
+    </qresource>
+</RCC>
